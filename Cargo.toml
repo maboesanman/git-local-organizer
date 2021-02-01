@@ -1,0 +1,18 @@
+[package]
+name = "git-local-organizer"
+version = "0.1.0"
+authors = ["Mason Boeman <masonboeman@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0"
+graphql_client = "0.9.0"
+serde = { version = "1.0", features = ["derive"] }
+reqwest = { version = "^0.10", features = ["json", "blocking"] }
+structopt = "^0.3"
+url = "2.2.0"
+directories-next = "2.0.0"
+serde_json = "1.0.61"
+git2 = "0.13.17"

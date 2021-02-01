@@ -1,0 +1,12 @@
+query RepositoryParentInfo($owner: String!, $name: String!) {
+  repository(owner: $owner, name: $name) {
+    parent {
+      __typename
+      owner {
+        __typename
+        login
+      }
+      name
+    }
+  }
+}
