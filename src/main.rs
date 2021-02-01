@@ -42,7 +42,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let git_url = fork_resolution.base.git_url;
     let local_dir = source_dir.join(fork_resolution.base.local_dir);
 
-    let repo = match Repository::clone(&git_url, &local_dir) {
+    let repo = match Repository::clone_recurse(&git_url, &local_dir) {
         Ok(repo) => {
             println!(
                 "cloning from \"{}\" into \"{}\"",
