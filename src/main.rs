@@ -1,11 +1,8 @@
-use core::fmt;
 use std::{error::Error, fs::File, io::BufReader};
 
 use config::Config;
 use directories_next::{ProjectDirs, UserDirs};
-use fmt::Debug;
 use git2::Repository;
-use serde::*;
 use structopt::StructOpt;
 
 use url::Url;
@@ -18,11 +15,6 @@ mod github;
 #[structopt(author, about)]
 struct Command {
     repo_url: String,
-}
-
-#[derive(Deserialize, Debug)]
-struct Env {
-    github_api_token: String,
 }
 
 fn main() -> Result<(), Box<dyn Error>> {

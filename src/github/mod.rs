@@ -1,4 +1,3 @@
-use core::fmt;
 use std::{convert::TryFrom, error::Error, path::PathBuf};
 
 use graphql_client::*;
@@ -40,12 +39,6 @@ impl TryFrom<GithubRepository> for RepoInfo {
     }
 }
 
-impl fmt::Display for GithubRepository {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}/{}", self.owner, self.name)
-    }
-}
-
 impl GithubRepository {
     fn from_url(url: &Url) -> Result<Self, Box<dyn Error>> {
         let host = url.host_str().ok_or("not a github repo url")?.to_string();
@@ -71,9 +64,9 @@ impl GithubRepository {
             owner: self.owner.to_string(),
             name: self.name.to_string(),
         });
-
+        let user_agent = format!("git-local-organizer/{}", env!("CARGO_PKG_VERSION"));
         let client = reqwest::blocking::Client::builder()
-            .user_agent("graphql-rust/0.9.0")
+            .user_agent(user_agent)
             .build()?;
 
         let endpoint = format!("https://api.{}/graphql", self.host);

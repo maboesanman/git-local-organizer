@@ -1,19 +1,19 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize)]
 pub struct Config {
     pub local_src_dir: String,
     hosts: HashMap<String, BaseUrlConfig>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize)]
 struct BaseUrlConfig {
     #[serde(default)]
     fork_resolution: ForkResolutionMethod,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize)]
 #[serde(tag = "type")]
 enum ForkResolutionMethod {
     Github { api_token: String },
